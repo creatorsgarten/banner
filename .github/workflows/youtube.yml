@@ -1,0 +1,41 @@
+name: Sync - YouTube
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: creatorsgarten/creatorsgarten.org
+          path: ../creatorsgarten.org
+          ssh-key: ${{ secrets.GARTENWEB_SSH_KEY }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: pnpm/action-setup@v2.2.4
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+      - uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            ~/.local/share/pnpm/store/v3
+          key: ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ env.cache-name }}-
+            ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-
+      - run: pnpm -r i --prefer-offline --frozen-lockfile
+      - run: pnpm capture
+      - uses: actions/upload-artifact@v3
+        with:
+          name: artifact-dist
+          path: dist
+          retention-days: 1
