@@ -41,6 +41,7 @@ const Page = async () => {
           <img src={processedEvents[1].image} className="w-[300px] h-[300px] rounded-2xl absolute z-30 -top-3 left-32 scale-90 rotate-[-18deg]" />
           <img src={processedEvents[2].image} className="w-[300px] h-[300px] rounded-2xl absolute z-20 top-2 left-16 scale-[.80] rotate-[-30deg]" />
           <img src={processedEvents[3].image} className="w-[300px] h-[300px] rounded-2xl absolute z-10 top-8 left-0 scale-75 rotate-[-45deg]" />
+          <img src={processedEvents[4].image} className="w-[300px] h-[300px] rounded-2xl absolute z-0 top-16 -left-8 scale-[.65] rotate-[-55deg]" />
         </div>
       </div>
     </main>
