@@ -39,8 +39,17 @@ jobs:
         working-directory: ./banner
       - run: pnpm capture
         working-directory: ./banner
+      - name: Write secret file
+        run: |
+          mkdir -p .data
+          echo "$GOOGLE_CLIENT_JSON" > .data/google_client_secret.json
+        env:
+          GOOGLE_CLIENT_JSON: ${{ secrets.GOOGLE_CLIENT_JSON }}
+        working-directory: ./banner
       - run: pnpm push
         working-directory: ./banner
+        env:
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
       - uses: actions/upload-artifact@v3
         with:
           name: artifact-dist
