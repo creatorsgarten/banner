@@ -1,14 +1,14 @@
-import '../styles/tailwind.css'
+import '../styles/output.css'
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode
+  children: React.ReactNode
 }) {
-	return (
-		<html>
-			<head />
-			<body>{children}</body>
-		</html>
-	)
+  return (
+    <html>
+      <head />
+      <body>{children}</body>
+    </html>
+  )
 }
