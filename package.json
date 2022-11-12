@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"next dev\" \"tailwindcss --input src/styles/input.css --output src/styles/output.css --watch\"",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
-    "capture": "start-server-and-test \"next\" 3000 \"node -r @swc-node/register tools/capture.ts\""
+    "capture": "start-server-and-test \"pnpm dev\" 3000 \"node -r @swc-node/register tools/capture.ts\""
   },
   "keywords": [],
   "author": "",
