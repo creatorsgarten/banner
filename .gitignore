@@ -146,3 +146,5 @@ dist
 .vercel
 *.tmp
 src/styles/output.css
+.data
+.envrc

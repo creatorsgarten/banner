@@ -7,13 +7,16 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "capture": "start-server-and-test \"pnpm dev\" 3000 \"node -r @swc-node/register tools/capture.ts\""
+    "capture": "start-server-and-test \"pnpm dev\" 3000 \"node -r @swc-node/register tools/capture.ts\"",
+    "push": "node -r @swc-node/register tools/push.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "google-auth-library": "^8.7.0",
+    "google-offline-access": "^0.0.0",
     "next": "^13.0.3",
     "postcss": "^8.4.18",
     "react": "^18.2.0",

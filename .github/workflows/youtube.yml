@@ -39,6 +39,8 @@ jobs:
         working-directory: ./banner
       - run: pnpm capture
         working-directory: ./banner
+      - run: pnpm push
+        working-directory: ./banner
       - uses: actions/upload-artifact@v3
         with:
           name: artifact-dist
