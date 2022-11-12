@@ -29,16 +29,18 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: |
-            node_modules
+            banner/node_modules
             ~/.local/share/pnpm/store/v3
           key: ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ hashFiles('./banner/**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ env.cache-name }}-
             ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-
       - run: pnpm -r i --prefer-offline --frozen-lockfile
+        working-directory: ./banner
       - run: pnpm capture
+        working-directory: ./banner
       - uses: actions/upload-artifact@v3
         with:
           name: artifact-dist
-          path: dist
+          path: banner/dist
           retention-days: 1
