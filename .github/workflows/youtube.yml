@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          path: ./banner
       - uses: actions/checkout@v3
         with:
           repository: creatorsgarten/creatorsgarten.org
-          path: ../creatorsgarten.org
+          path: ./creatorsgarten.org
           ssh-key: ${{ secrets.GARTENWEB_SSH_KEY }}
+      - run: cd banner
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -28,7 +31,7 @@ jobs:
           path: |
             node_modules
             ~/.local/share/pnpm/store/v3
-          key: ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ hashFiles('./banner/**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ env.cache-name }}-
             ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-
