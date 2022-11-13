@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import puppeteer from 'puppeteer'
+
 ;(async () => {
   console.log('launching browser...')
   const browser = await puppeteer.launch({
@@ -13,8 +14,8 @@ import puppeteer from 'puppeteer'
 
   console.log('navigating...')
   const page = await browser.newPage()
-  await page.goto('http://localhost:3000', {
-    waitUntil: 'networkidle2',
+  await page.goto('http://localhost:5173/youtube', {
+    waitUntil: 'networkidle0',
   })
 
   console.log('capturing...')

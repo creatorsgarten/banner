@@ -10,14 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          path: ./banner
-      - uses: actions/checkout@v3
-        with:
-          repository: creatorsgarten/creatorsgarten.org
-          path: ./creatorsgarten.org
-          ssh-key: ${{ secrets.GARTENWEB_SSH_KEY }}
-      - run: cd banner
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -36,18 +28,14 @@ jobs:
             ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ env.cache-name }}-
             ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-
       - run: pnpm -r i --prefer-offline --frozen-lockfile
-        working-directory: ./banner
       - run: pnpm capture
-        working-directory: ./banner
       - name: Write secret file
         run: |
           mkdir -p .data
           echo "$GOOGLE_CLIENT_JSON" > .data/google_client_secret.json
         env:
           GOOGLE_CLIENT_JSON: ${{ secrets.GOOGLE_CLIENT_JSON }}
-        working-directory: ./banner
       - run: pnpm push
-        working-directory: ./banner
         env:
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
       - uses: actions/upload-artifact@v3
