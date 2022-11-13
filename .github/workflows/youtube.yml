@@ -21,12 +21,12 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: |
-            banner/node_modules
+            node_modules
             ~/.local/share/pnpm/store/v3
-          key: ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ hashFiles('./banner/**/pnpm-lock.yaml') }}
+          key: ${{ runner.OS }}-x86-node18-pnpm7-svelte-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-${{ env.cache-name }}-
-            ${{ runner.OS }}-x86-node18-pnpm7-${{ inputs.hash }}-
+            ${{ runner.OS }}-x86-node18-pnpm7-svelte-${{ inputs.hash }}-${{ env.cache-name }}-
+            ${{ runner.OS }}-x86-node18-pnpm7-svelte-${{ inputs.hash }}-
       - run: pnpm -r i --prefer-offline --frozen-lockfile
       - run: pnpm capture
       - name: Write secret file

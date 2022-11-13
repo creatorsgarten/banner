@@ -14,10 +14,7 @@
     "push": "node tools/push.js"
   },
   "devDependencies": {
-    "@neoconfetti/svelte": "^1.0.0",
-    "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
-    "@types/cookie": "^0.5.1",
     "autoprefixer": "^10.4.13",
     "google-auth-library": "^8.7.0",
     "google-offline-access": "^0.0.0",

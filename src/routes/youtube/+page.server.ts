@@ -14,7 +14,7 @@ interface BannerData {
   }
 }
 
-export const load: PageServerLoad = async event => {
+export const load: PageServerLoad = async () => {
   // get event details
   const bannerData: BannerData = await fetch(
     'https://creatorsgarten.org/api/banner'
