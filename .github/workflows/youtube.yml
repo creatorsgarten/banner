@@ -41,5 +41,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: artifact-dist
-          path: banner/dist
+          path: dist
           retention-days: 1
