@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        id: pnpm-install
+        with:
+          version: 9
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - uses: pnpm/action-setup@v4
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
-      - run: pnpm -r i --prefer-offline --frozen-lockfile
+      - run: pnpm i
       - run: pnpm capture
       - name: Write secret file
         run: |
