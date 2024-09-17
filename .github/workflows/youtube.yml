@@ -9,24 +9,16 @@ jobs:
   capture:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - uses: pnpm/action-setup@v2.2.4
+          node-version: lts
+          cache: pnpm
+      - uses: pnpm/action-setup@v4
         id: pnpm-install
         with:
           version: 7
           run_install: false
-      - uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            ~/.local/share/pnpm/store/v3
-          key: ${{ runner.OS }}-x86-node18-pnpm7-svelte-${{ inputs.hash }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.OS }}-x86-node18-pnpm7-svelte-${{ inputs.hash }}-${{ env.cache-name }}-
-            ${{ runner.OS }}-x86-node18-pnpm7-svelte-${{ inputs.hash }}-
       - run: pnpm -r i --prefer-offline --frozen-lockfile
       - run: pnpm capture
       - name: Write secret file
